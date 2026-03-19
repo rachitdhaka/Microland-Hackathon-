@@ -20,7 +20,7 @@ export default function CreateProjectPage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users");
+        const res = await fetch("https://microland-hackathon-1.onrender.com/api/users");
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.data.length > 0) {
@@ -82,7 +82,7 @@ export default function CreateProjectPage() {
         creatorId
       };
 
-      const res = await fetch("http://localhost:5000/api/projects", {
+      const res = await fetch("https://microland-hackathon-1.onrender.com/api/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

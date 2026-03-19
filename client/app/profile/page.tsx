@@ -27,7 +27,9 @@ export default function ProfilePage() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/me", {
+      const res = await fetch(
+        "https://microland-hackathon-1.onrender.com/api/users/me",
+        {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -61,7 +63,9 @@ export default function ProfilePage() {
     const skillsArray = skills.split(",").map((s) => s.trim()).filter((s) => s !== "");
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/me", {
+      const res = await fetch(
+        "https://microland-hackathon-1.onrender.com/api/users/me",
+        {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

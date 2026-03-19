@@ -20,7 +20,7 @@ interface ProjectData {
 
 async function getProject(id: string): Promise<ProjectData | null> {
   try {
-    const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
+    const res = await fetch(`https://microland-hackathon-1.onrender.com/api/projects/${id}`, {
       cache: "no-store", 
     });
 
