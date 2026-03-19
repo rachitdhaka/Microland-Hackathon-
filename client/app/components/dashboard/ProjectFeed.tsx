@@ -19,7 +19,7 @@ interface Project {
   status: "Open" | "Team Full";
 }
 
-export function ProjectFeed() {
+export function ProjectFeed({ searchQuery = "" }: { searchQuery?: string }) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -50,10 +50,10 @@ export function ProjectFeed() {
     return (
       <div className="w-full flex justify-center py-20">
         <div className="animate-pulse space-y-4 w-full">
-          <div className="h-8 bg-muted rounded w-1/4"></div>
+          <div className="h-8 bg-muted rounded w-1/4 mb-8"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-[280px] bg-muted rounded-xl"></div>
+              <div key={i} className="h-[280px] bg-muted rounded-xl border border-border"></div>
             ))}
           </div>
         </div>
@@ -73,7 +73,7 @@ export function ProjectFeed() {
 
   if (projects.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-border p-12 text-center flex flex-col items-center justify-center">
+      <div className="rounded-xl border border-dashed border-border p-12 text-center flex flex-col items-center justify-center bg-card">
         <h2 className="font-semibold text-xl mb-2">No Active Projects</h2>
         <p className="text-sm text-muted-foreground mb-6">Be the first to create one.</p>
         <a href="/create-project" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 shadow h-9 px-4 py-2">
@@ -83,9 +83,27 @@ export function ProjectFeed() {
     );
   }
 
+  const filteredProjects = projects.filter((p) => {
+    const q = searchQuery.toLowerCase();
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.requiredRoles.some((role) => role.toLowerCase().includes(q))
+    );
+  });
+
+  if (filteredProjects.length === 0) {
+    return (
+      <div className="rounded-xl border border-dashed border-border p-12 text-center flex flex-col items-center justify-center bg-card">
+        <h2 className="font-semibold text-xl mb-2">No Matches Found</h2>
+        <p className="text-sm text-muted-foreground">Adjust your filters to see more projects.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
+      {filteredProjects.map((project) => (
         <ProjectCard
           key={project._id}
           id={project._id}
