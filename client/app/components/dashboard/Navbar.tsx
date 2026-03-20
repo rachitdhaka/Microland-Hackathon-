@@ -27,7 +27,7 @@ export function Navbar() {
         {/* Brand */}
         <div className="font-geist font-bold tracking-tight text-lg">
           <Link href="/dashboard" className="transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>
-            Microland
+            Skillsync
           </Link>
         </div>
 
