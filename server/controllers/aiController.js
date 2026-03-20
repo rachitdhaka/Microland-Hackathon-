@@ -75,9 +75,9 @@ exports.matchUsers = async (req, res) => {
       Important: Return ONLY the JSON array, no other text or formatting.
     `;
 
-    console.log("AI Match: Sending request to gemini-3-flash-preview...");
+    console.log("AI Match: Sending request to gemini-2.5-flash...");
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.5-flash",
       contents: prompt,
     });
     
@@ -124,7 +124,7 @@ exports.matchUsers = async (req, res) => {
     let errorMessage = "An error occurred during AI matching.";
     
     if (error.status === 404) {
-      errorMessage = "AI Model not found (404). The requested model 'gemini-3-flash-preview' might be unavailable.";
+      errorMessage = "AI Model not found (404). The requested model 'gemini-2.5-flash' might be unavailable.";
     } else if (error.status === 403) {
       errorMessage = "AI Access denied (403). Please check your API key permissions.";
     } else if (error.status === 429) {
