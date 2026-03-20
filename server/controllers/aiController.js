@@ -68,12 +68,16 @@ exports.matchUsers = async (req, res) => {
          - matchScore: A score from 0 to 100
          - reasoning: A short, 1-sentence explanation of why they are a good match.
 
+      CRITICAL SAFETY RULE: 
+      If the 'Search Description' is UNRELATED to finding a teammate, hackathon projects, technology, or skills (e.g., general knowledge questions like "who is the PM of India", "what is covid 19", "how are you", jokes, or general chatting), you MUST return an EMPTY ARRAY: []. 
+      This is strictly a matchmaking service for the Microland hackathon. Do NOT attempt to answer unrelated questions or match them to users if the intent is not to find a teammate.
+
       Important: Return ONLY the JSON array, no other text or formatting.
     `;
 
-    console.log("AI Match: Sending request to gemini-3-flash-preview...");
+    console.log("AI Match: Sending request to gemini-1.5-flash...");
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-1.5-flash",
       contents: prompt,
     });
     
@@ -87,6 +91,15 @@ exports.matchUsers = async (req, res) => {
     }
     
     const rankings = JSON.parse(jsonMatch[0]);
+
+    // If AI determined it's out of context, it returns []
+    if (rankings.length === 0) {
+      return res.status(200).json({
+        success: true,
+        data: [],
+        message: "Give me a relevant Query",
+      });
+    }
 
     // Map rankings back to user objects
     const matchedUsers = rankings

@@ -123,16 +123,16 @@ export default async function ProjectDetailsPage({
               <h3 className="font-medium text-sm text-muted-foreground mb-4 uppercase tracking-wider">
                 Created By
               </h3>
-              <p className="font-semibold text-lg mb-3">{project.creatorId.name}</p>
+              <p className="font-semibold text-lg mb-3">{project.creatorId?.name || "Unknown User"}</p>
               <div className="flex flex-wrap gap-2">
-                {project.creatorId.skills.slice(0, 3).map((skill, idx) => (
+                {project.creatorId?.skills?.slice(0, 3).map((skill, idx) => (
                   <span key={idx} className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground">
                     {skill}
                   </span>
                 ))}
-                {project.creatorId.skills.length > 3 && (
+                {(project.creatorId?.skills?.length || 0) > 3 && (
                   <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground">
-                    +{project.creatorId.skills.length - 3}
+                    +{(project.creatorId?.skills?.length || 0) - 3}
                   </span>
                 )}
               </div>
@@ -156,10 +156,10 @@ export default async function ProjectDetailsPage({
             {/* Team Members */}
             <div className="rounded-xl border border-border bg-card text-card-foreground shadow-sm p-6">
               <h3 className="font-medium text-sm text-muted-foreground mb-4 uppercase tracking-wider">
-                Current Roster ({project.teamMembers.length})
+                Current Roster ({project.teamMembers?.length || 0})
               </h3>
               
-              {project.teamMembers.length === 0 ? (
+              {!project.teamMembers || project.teamMembers.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
                   No members yet.
                 </p>
@@ -167,9 +167,9 @@ export default async function ProjectDetailsPage({
                 <ul className="flex flex-col gap-4">
                   {project.teamMembers.map((member) => (
                     <li key={member._id} className="border-b border-border pb-4 last:border-0 last:pb-0">
-                      <p className="font-semibold text-base mb-1">{member.name}</p>
+                      <p className="font-semibold text-base mb-1">{member.name || "Unknown User"}</p>
                       <p className="text-sm text-muted-foreground line-clamp-1">
-                        {member.skills.join(" • ")}
+                        {member.skills?.join(" • ") || "No skills listed"}
                       </p>
                     </li>
                   ))}
