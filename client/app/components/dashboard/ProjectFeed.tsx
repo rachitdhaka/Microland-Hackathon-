@@ -23,8 +23,19 @@ export function ProjectFeed({ searchQuery = "" }: { searchQuery?: string }) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
   useEffect(() => {
+    // Get current user from localStorage
+    const userStr = localStorage.getItem("user");
+    if (userStr) {
+      try {
+        setCurrentUser(JSON.parse(userStr));
+      } catch (e) {
+        console.error("Failed to parse user from localStorage", e);
+      }
+    }
+
     const fetchProjects = async () => {
       try {
         const res = await fetch("https://microland-hackathon-1.onrender.com/api/projects");
@@ -101,17 +112,52 @@ export function ProjectFeed({ searchQuery = "" }: { searchQuery?: string }) {
     );
   }
 
+  const myProjects = filteredProjects.filter(p => p.creatorId?._id === currentUser?._id);
+  const otherProjects = filteredProjects.filter(p => p.creatorId?._id !== currentUser?._id);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {filteredProjects.map((project) => (
-        <ProjectCard
-          key={project._id}
-          id={project._id}
-          title={project.title}
-          description={project.description}
-          requiredRoles={project.requiredRoles}
-        />
-      ))}
+    <div className="space-y-12">
+      {myProjects.length > 0 && (
+        <section>
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-2xl font-bold tracking-tight">Our Projects</h2>
+            <div className="h-px flex-1 bg-border/50"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {myProjects.map((project) => (
+              <ProjectCard
+                key={project._id}
+                id={project._id}
+                title={project.title}
+                description={project.description}
+                requiredRoles={project.requiredRoles}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {otherProjects.length > 0 && (
+        <section>
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-2xl font-bold tracking-tight">
+              {myProjects.length > 0 ? "Other projects" : "All Projects"}
+            </h2>
+            <div className="h-px flex-1 bg-border/50"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherProjects.map((project) => (
+              <ProjectCard
+                key={project._id}
+                id={project._id}
+                title={project.title}
+                description={project.description}
+                requiredRoles={project.requiredRoles}
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
