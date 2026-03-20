@@ -45,7 +45,7 @@ export default function Home() {
             </h1>
             
             <p className="mx-auto max-w-[700px] text-lg md:text-xl text-muted-foreground mb-12 font-medium">
-              Microland Hackathon is the ultimate platform for developers to showcase their skills, collaborate on bold ideas, and create high-impact projects.
+              SkillSync is the ultimate platform for developers to showcase their skills, collaborate on bold ideas, and create high-impact projects.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
