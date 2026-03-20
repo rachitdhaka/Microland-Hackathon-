@@ -15,6 +15,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard" },
+    { name: "People", href: "/people" },
     { name: "Create Project", href: "/create-project" },
     { name: "AI Mate Finding", href: "/ai-match" },
     { name: "Profile", href: "/profile" },
