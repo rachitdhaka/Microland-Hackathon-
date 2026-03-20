@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Navbar } from "@/app/components/dashboard/Navbar";
+import { LogOut } from "lucide-react";
 
 export default function ProfilePage() {
   const [name, setName] = useState("");
@@ -51,6 +52,14 @@ export default function ProfilePage() {
       setError("An error occurred while fetching profile.");
     } finally {
       setFetching(false);
+    }
+  };
+
+  const handleLogout = () => {
+    if (confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
     }
   };
 
@@ -139,6 +148,14 @@ export default function ProfilePage() {
                 <p className="text-xs text-muted-foreground">{email}</p>
               </div>
             </div>
+
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center justify-center gap-2 rounded-xl border border-destructive/20 bg-destructive/5 text-destructive py-3 px-4 text-sm font-semibold transition-all hover:bg-destructive hover:text-destructive-foreground"
+            >
+              <LogOut size={16} />
+              Logout from account
+            </button>
           </aside>
 
           <section>
