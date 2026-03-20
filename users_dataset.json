@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Alex Chen",
+    "email": "alex.chen@example.com",
+    "bio": "Passionate about creating fluid user experiences and complex animations.",
+    "skills": ["React", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    "availability": "Weekends only",
+    "number": "+1234567890"
+  },
+  {
+    "name": "Sarah Miller",
+    "email": "sarah.m@dev.io",
+    "bio": "Building scalable backend architectures and optimizing database queries.",
+    "skills": ["Node.js", "PostgreSQL", "Redis", "GraphQL"],
+    "availability": "Full-time",
+    "number": "+1987654321"
+  },
+  {
+    "name": "Jordan Smith",
+    "email": "jordan.design@studio.com",
+    "bio": "Specializing in visual identity and interactive prototypes.",
+    "skills": ["Figma", "Adobe XD", "UI/UX Design", "Prototyping"],
+    "availability": "Part-time",
+    "number": "+1555010101"
+  },
+  {
+    "name": "Elena Rodriguez",
+    "email": "elena.r@cloud.net",
+    "bio": "Expert in automating deployments and managing Kubernetes clusters.",
+    "skills": ["Docker", "Kubernetes", "AWS", "Terraform", "CI/CD"],
+    "availability": "Flexible",
+    "number": "+1777888999"
+  },
+  {
+    "name": "Marcus Thorne",
+    "email": "m.thorne@data.science",
+    "bio": "Analyzing big data and building predictive models using machine learning.",
+    "skills": ["Python", "TensorFlow", "Pandas", "Scikit-learn"],
+    "availability": "Evenings",
+    "number": "+1222333444"
+  },
+  {
+    "name": "Priya Sharma",
+    "email": "priya.s@mobile.apps",
+    "bio": "Cross-platform mobile lover building smooth Expo and React Native apps.",
+    "skills": ["React Native", "Expo", "JavaScript", "Firebase"],
+    "availability": "Weekends",
+    "number": "+919876543210"
+  },
+  {
+    "name": "Liam Vance",
+    "email": "liam.v@web3.tech",
+    "bio": "Exploring the decentralized web through smart contracts and dApps.",
+    "skills": ["Solidity", "Ethereum", "Web3.js", "Hardhat"],
+    "availability": "Part-time",
+    "number": "+447700900000"
+  },
+  {
+    "name": "Ava Sterling",
+    "email": "ava.sec@cyber.guard",
+    "bio": "Ensuring system integrity through deep penetration testing and audits.",
+    "skills": ["Penetration Testing", "Security Auditing", "Kali Linux", "Networks"],
+    "availability": "Full-time",
+    "number": "+18885551234"
+  },
+  {
+    "name": "Kenji Tanaka",
+    "email": "kenji.gamedev@play.com",
+    "bio": "Indie game enthusiast making 3D worlds come to life in Unity.",
+    "skills": ["Unity", "C#", "Blender", "3D Modeling"],
+    "availability": "Flexible",
+    "number": "+819012345678"
+  },
+  {
+    "name": "Sofia Rossi",
+    "email": "sofia.pm@strategy.com",
+    "bio": "Bridging the gap between stakeholders and engineers through Agile.",
+    "skills": ["Product Strategy", "Agile", "Jira", "Market Research"],
+    "availability": "Full-time",
+    "number": "+39021234567"
+  }
+]

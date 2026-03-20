@@ -11,7 +11,7 @@ export default function Home() {
             <div className="size-8 bg-primary flex items-center justify-center rounded-sm">
               <Code2 className="size-5 text-primary-foreground" />
             </div>
-            <span className="font-bold text-xl tracking-tight">MICROLAND</span>
+            <span className="font-bold text-xl tracking-tight">SkillSync</span>
           </div>
           
           <nav className="flex items-center gap-6">
