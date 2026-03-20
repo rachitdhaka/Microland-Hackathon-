@@ -18,21 +18,23 @@ export default function CreateProjectPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const userJson = localStorage.getItem("user");
+    if (userJson) {
       try {
-        const res = await fetch("https://microland-hackathon-1.onrender.com/api/users");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.success && data.data.length > 0) {
-            setCreatorId(data.data[0]._id);
-          }
+        const user = JSON.parse(userJson);
+        if (user && user._id) {
+          setCreatorId(user._id);
+        } else {
+          router.push("/login");
         }
       } catch (err) {
-        console.error("Failed to fetch mock user:", err);
+        console.error("Failed to parse user from localStorage:", err);
+        router.push("/login");
       }
-    };
-    fetchUser();
-  }, []);
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
 
   const handleAddRole = (e: React.KeyboardEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>) => {
     const isEnter = 'key' in e && e.key === "Enter";
